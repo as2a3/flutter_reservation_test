@@ -93,42 +93,16 @@ class _HomePageState extends State<HomePage> {
         constraints: BoxConstraints(
           maxHeight: MediaQuery.of(context).size.height * 0.85,
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Opacity(
-              opacity: 0.80,
-              child: Container(
-                width: double.infinity,
-                height: 30,
-                decoration: const ShapeDecoration(
-                  color: Color(0xFF938F93),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
-                  ),
-                ),
-                child: Center(
-                  child: Container(
-                    width: 53,
-                    height: 6,
-                    decoration: ShapeDecoration(
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: ColoredBox(
-                color: Colors.white,
-                child: ListView(
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+          child: ColoredBox(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            child: Stack(
+              children: <Widget>[
+                ListView(
                   children: [
                     /// The hotel image cover
                     HotelImageCoverWidget(imageUrl: booking.hotel.cover),
@@ -214,9 +188,37 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-              ),
+                Opacity(
+                  opacity: 0.80,
+                  child: Container(
+                    width: double.infinity,
+                    height: 30,
+                    decoration: const ShapeDecoration(
+                      color: Color(0xFF938F93),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                    ),
+                    child: Center(
+                      child: Container(
+                        width: 53,
+                        height: 6,
+                        decoration: ShapeDecoration(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
